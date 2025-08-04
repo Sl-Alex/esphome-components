@@ -25,7 +25,6 @@ namespace esphome
       void dump_config() override;
       float get_setup_priority() const override;
       void update() override;
-      void loop() override;
       void fill(Color color) override;
       void write_display_data();
       display::DisplayType get_display_type() override { return display::DisplayType::DISPLAY_TYPE_BINARY; }

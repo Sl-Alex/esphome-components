@@ -24,6 +24,7 @@ namespace esphome
       this->cs_->setup();
       this->cs_->digital_write(false);
       lcd_clear();
+      this->set_interval(1000, [this]() { this->lcd_toggle_vcom(); });
     }
 
     /** Clear display memory */
@@ -85,14 +86,6 @@ namespace esphome
 
     void LS032B7DD02::fill(Color color) {
       memset(this->buffer_, color.is_on() ? 0x00 : 0xFF, this->get_buffer_length_());
-    }
-
-    void LS032B7DD02::loop() {
-      static uint8_t i = 0;
-      if ((i++) >= 50){
-        lcd_toggle_vcom();
-        i = 0;
-      }
     }
 
     void LS032B7DD02::dump_config()
